@@ -1,0 +1,21 @@
+{
+    "name": "nodejs_twitchbot",
+    "version": "1.0.0",
+    "description": "twitch bot",
+    "main": "index.js",
+    "scripts": {
+        "start": "node server",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "twitch",
+        "bot",
+        "chat",
+        "nodejs"
+    ],
+    "author": " <nikita.nov2016@yandex.ru>",
+    "license": "ISC",
+    "dependencies": {
+        "tmi.js": "^1.8.3"
+    }
+}
