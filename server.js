@@ -1,48 +1,51 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const tmi = require("tmi.js");
+const tmi = require('tmi.js');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
 const commands = {
   website: {
-    response: "https://vk.com",
+    response: 'https://vk.com'
   },
   upvote: {
-    response: (user) => `User ${user} was just upvoted!`,
-  },
-};
+    response: (argument) => `Successfully upvoted ${argument}`
+  }
+}
 
 const client = new tmi.Client({
-  connection: { reconnect: true },
-  channels: ["karriganny"],
+  connection: {
+    reconnect: true
+  },
+  channels: [
+    'karriganny'
+  ],
   identity: {
     username: process.env.TWITCH_BOT_USERNAME,
-    password: process.env.TWITCH_OAUTH_TOKEN,
-  },
+    password: process.env.TWITCH_OAUTH_TOKEN
+  }
 });
 
 client.connect();
 
-client.on("message", (channel, tags, message, self) => {
+client.on('message', async (channel, context, message) => {
+  const isNotBot = context.username.toLowerCase() !== process.env.TWITCH_BOT_USERNAME.toLowerCase();
 
-  const isNotBot =
-    tags.username.toLowerCase() !== process.env.TWITCH_BOT_USERNAME;
-
-  if (!isNotBot) {
-    return;
-  }
+  if ( !isNotBot ) return;
 
   const [raw, command, argument] = message.match(regexpCommand);
 
   const { response } = commands[command] || {};
 
-  if (typeof response === "function") {
-    client.say(channel, response(tags.username));
-    console.log(channel, response(tags.username));
-  } else if (typeof response === "string") {
-    client.say(channel, response);
-    console.log(channel, response);
+  let responseMessage = response;
+
+  if ( typeof responseMessage === 'function' ) {
+    responseMessage = response(argument);
   }
-  console.log(`${tags["display-name"]}: ${message}`);
+
+  if ( responseMessage ) {
+    console.log(`Responding to command !${command}`);
+    client.say(channel, responseMessage);
+  }
+
 });
