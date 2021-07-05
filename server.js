@@ -1,51 +1,24 @@
 require('dotenv').config();
-
 const tmi = require('tmi.js');
 
-const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
-
-const commands = {
-  website: {
-    response: 'https://vk.com'
-  },
-  upvote: {
-    response: (argument) => `Successfully upvoted ${argument}`
-  }
-}
-
 const client = new tmi.Client({
-  connection: {
-    reconnect: true
-  },
-  channels: [
-    'karriganny'
-  ],
-  identity: {
-    username: process.env.TWITCH_BOT_USERNAME,
-    password: process.env.TWITCH_OAUTH_TOKEN
-  }
+	options: { debug: true },
+	identity: {
+		username: process.env.TWITCH_BOT_USERNAME,
+		password: process.env.TWITCH_OAUTH_TOKEN
+	},
+	channels: [ 'karriganny' ]
 });
 
 client.connect();
 
-client.on('message', async (channel, context, message) => {
-  const isNotBot = context.username.toLowerCase() !== process.env.TWITCH_BOT_USERNAME.toLowerCase();
+client.on('message', (channel, tags, message, self) => {
+	if(self) return;
 
-  if ( !isNotBot ) return;
-
-  const [raw, command, argument] = message.match(regexpCommand);
-
-  const { response } = commands[command] || {};
-
-  let responseMessage = response;
-
-  if ( typeof responseMessage === 'function' ) {
-    responseMessage = response(argument);
-  }
-
-  if ( responseMessage ) {
-    console.log(`Responding to command !${command}`);
-    client.say(channel, responseMessage);
-  }
-
+	if(message.toLowerCase() === '!hello') {
+		client.say(channel, `@${tags.username}, heya!`);
+	}
+	if(message.toLowerCase() === '!vk') {
+		client.say(channel, `@${tags.username}, мой вк vk.com!`);
+	}
 });
