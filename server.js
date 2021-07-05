@@ -21,4 +21,7 @@ client.on('message', (channel, tags, message, self) => {
 	if(message.toLowerCase() === '!vk') {
 		client.say(channel, `@${tags.username}, мой вк vk.com!`);
 	}
+	if(message.toLowerCase() === '!mylove') {
+		client.say(channel, `@${tags.username}, КОНЕЧНО ЖЕ АНЕЧКА!!!`);
+	}
 });
