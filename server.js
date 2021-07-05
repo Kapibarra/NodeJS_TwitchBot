@@ -7,7 +7,7 @@ const client = new tmi.Client({
 		username: process.env.TWITCH_BOT_USERNAME,
 		password: process.env.TWITCH_OAUTH_TOKEN
 	},
-	channels: [ 'karriganny' ]
+	channels: [ 'nam_2077_' ]
 });
 
 client.connect();
@@ -20,8 +20,5 @@ client.on('message', (channel, tags, message, self) => {
 	}
 	if(message.toLowerCase() === '!vk') {
 		client.say(channel, `@${tags.username}, мой вк vk.com!`);
-	}
-	if(message.toLowerCase() === '!mylove') {
-		client.say(channel, `@${tags.username}, КОНЕЧНО ЖЕ АНЕЧКА!!!`);
 	}
 });
