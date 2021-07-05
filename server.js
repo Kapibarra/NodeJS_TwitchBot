@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 const tmi = require('tmi.js');
 
@@ -5,7 +6,7 @@ const client = new tmi.Client({
     connection: {reconnect: true},
 	channels: [ 'karriganny' ],
     identity: {
-		username: 'my_bot_name',
+		username: process.env.TWITCH_BOT_USERNAME,
 		password: 'oauth:my_bot_token'
 	}
 });
