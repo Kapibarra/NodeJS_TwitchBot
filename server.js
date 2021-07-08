@@ -28,10 +28,10 @@ function subscribe() {
 		client.say(channel, `@${tags.username}, мой вк vk.com!`);
 	}
 	if(message.toLowerCase() === '!youtube') {
-		client.say(channel, `@${tags.username}, мой YouTube https://clck.ru/Vzp48`);
+		client.say(channel, `@${tags.username}, мой YouTube https://inlnk.ru/q6X1V`);
 	}
 	if(message.toLowerCase() === '!donate') {
-		client.say(channel, ` https://clck.ru/VzpFH , Большущее спасибо, @${tags.username} !`);
+		client.say(channel, ` https://www.donationalerts.com/r/nam_ , Большущее спасибо, @${tags.username} !`);
 	}
 	if(message.toLowerCase() === '!substart' && tags.username === 'nam_2077_') { 
 	setInterval((() => subscribe()), 36000);
@@ -39,7 +39,7 @@ function subscribe() {
 	}
 	if(message.toLowerCase() === '!commands') {
 		client.say(channel, 
-			`Команды на стриме: !vk !привет !youtube !donate `);
+			`@${tags.username}, команды на стриме: !vk !привет !youtube !donate `);
 	}
 });
 
