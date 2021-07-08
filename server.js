@@ -28,10 +28,10 @@ function subscribe() {
 		client.say(channel, `@${tags.username}, мой вк vk.com!`);
 	}
 	if(message.toLowerCase() === '!youtube') {
-		client.say(channel, `@${tags.username}, мой YouTube https://inlnk.ru/q6X1V`);
+		client.say(channel, `@${tags.username}, мой YouTube https://inlnk.ru/WoJ9L`);
 	}
 	if(message.toLowerCase() === '!donate') {
-		client.say(channel, ` https://www.donationalerts.com/r/nam_ , Большущее спасибо, @${tags.username} !`);
+		client.say(channel, `Ссылка на донат https://inlnk.ru/q6X1V , Большущее спасибо, @${tags.username} !`);
 	}
 	if(message.toLowerCase() === '!substart' && tags.username === 'nam_2077_') { 
 	setInterval((() => subscribe()), 36000);
