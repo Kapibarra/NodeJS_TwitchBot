@@ -9,16 +9,42 @@ const client = new tmi.Client({
 	},
 	channels: [ 'nam_2077_' ]
 });
-
 client.connect();
 
+
+
 client.on('message', (channel, tags, message, self) => {
+
+function subscribe() {
+	client.say(channel, `Не забудь подписаться на мой Twitch, а так же YouTube <а>https://www.youtube.com/channel/UCqtlYiceFqtsr46SY0-3azQ/featured</a>`)
+}
+
 	if(self) return;
 
-	if(message.toLowerCase() === '!hello') {
-		client.say(channel, `@${tags.username}, heya!`);
+	if(message.toLowerCase() === '!привет') {
+		client.say(channel, `Привет!Рад видеть тебя на своём стриме, @${tags.username}!`);
 	}
 	if(message.toLowerCase() === '!vk') {
 		client.say(channel, `@${tags.username}, мой вк vk.com!`);
 	}
+	if(message.toLowerCase() === '!youtube') {
+		client.say(channel, `@${tags.username}, мой YouTube https://clck.ru/Vzp48`);
+	}
+	if(message.toLowerCase() === '!donate') {
+		client.say(channel, ` https://clck.ru/VzpFH , Большущее спасибо, @${tags.username} !`);
+	}
+	if(message.toLowerCase() === '!substart' && tags.username === 'nam_2077_') { 
+	setInterval((() => subscribe()), 36000);
+	console.log('started')
+	}
+	if(message.toLowerCase() === '!commands') {
+		client.say(channel, 
+			`Команды на стриме: !vk !привет !youtube !donate `);
+	}
 });
+
+
+
+
+
+
